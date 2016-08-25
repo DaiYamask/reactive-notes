@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.0.M3'
+		springBootVersion = '1.4.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -30,11 +30,16 @@ repositories {
     mavenLocal()
 }
 
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.boot.experimental:spring-boot-dependencies-web-reactive:0.1.0.BUILD-SNAPSHOT"
+	}
+}
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter')
-	compile('io.projectreactor:reactor-core:2.5.0.BUILD-SNAPSHOT')
-	compile('org.springframework.boot:spring-boot-starter-reactive-web:0.0.1-SNAPSHOT')
+	compile('io.projectreactor.ipc:reactor-netty:0.5.0.RELEASE')
+	compile('org.springframework.boot.experimental:spring-boot-starter-web-reactive')
 	testCompile('org.springframework.boot:spring-boot-starter-test') 
 }
 
